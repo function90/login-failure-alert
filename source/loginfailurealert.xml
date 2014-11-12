@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="system" method="upgrade">
     <name>System-Login Failure Alert</name>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <creationDate>Dec 2013</creationDate>
     <author>Team Function90</author>
     <authorEmail>dev.function90+contact@gmail.com</authorEmail>
@@ -37,7 +37,7 @@
 					required="true"
 				/>
 				
-				<field name="mail_content" type="textarea"
+				<field name="mail_content" type="editor"
 					description="PLG_SYSTEM_LOGINFAILUREALERT_MAIL_CONTENT_DETAIL"
 					label="PLG_SYSTEM_LOGINFAILUREALERT_MAIL_CONTENT"
 					default=""

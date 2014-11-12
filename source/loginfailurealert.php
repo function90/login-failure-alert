@@ -132,7 +132,19 @@ class plgSystemLoginfailurealert extends JPlugin
 	 */
 	function replaceToken($content, $user)
 	{
-		$tokens = array('{LFA_EMAIL}'=>$user->email, '{LFA_USERNAME}'=>$user->username, '{LFA_NAME}'=>$user->name);
+		$app = (JFactory::getApplication()->isAdmin()) ? 'Administrator' : 'Site';
+
+		$db    = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query->select('group_concat(title)')
+				->from('#__usergroups as gp')
+				->where('gp.id IN ('.implode(',', $user->groups).')');
+		
+		$db->setQuery($query);
+		$usergroups = $db->loadRow();		
+		$usergroups = implode(',', array_values($usergroups));
+
+		$tokens = array('{LFA_EMAIL}'=>$user->email, '{LFA_USERNAME}'=>$user->username, '{LFA_NAME}'=>$user->name,'{LFA_LOCATION}'=>$app, '{LFA_USERGROUP}'=>$usergroups);
 		foreach($tokens as $key => $value){
 			$content =  str_replace($key, $value, $content);
 		}
