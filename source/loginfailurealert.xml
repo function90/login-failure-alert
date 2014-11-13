@@ -44,6 +44,7 @@
 					rows="10"
 					cols="20"
 					required="true"
+					filter="JComponentHelper::filterText"
 				/>
 				
 				<field name="alert_user" type="radio"
