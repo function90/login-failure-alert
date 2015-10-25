@@ -100,7 +100,8 @@ class plgSystemLoginfailurealert extends JPlugin
 										)
 							->addRecipient($recipient)
 							->setSubject($this->replaceToken($mail_subject, $user))
-							->setBody($this->replaceToken($mail_content, $user));
+							->setBody($this->replaceToken($mail_content, $user))
+							->isHtml(true);
 							
 		if (!$mail->Send()) {
 			
