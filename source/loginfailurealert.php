@@ -145,7 +145,14 @@ class plgSystemLoginfailurealert extends JPlugin
 		$usergroups = $db->loadRow();		
 		$usergroups = implode(',', array_values($usergroups));
 
-		$tokens = array('{LFA_USERID}'=>$user->id, '{LFA_EMAIL}'=>$user->email, '{LFA_USERNAME}'=>$user->username, '{LFA_NAME}'=>$user->name,'{LFA_LOCATION}'=>$app, '{LFA_USERGROUP}'=>$usergroups);
+		$tokens = array('{LFA_USERID}'=>$user->id, 
+				'{LFA_EMAIL}'=>$user->email, 
+				'{LFA_USERNAME}'=>$user->username, 
+				'{LFA_NAME}'=>$user->name,
+				'{LFA_LOCATION}'=>$app, 
+				'{LFA_USERGROUP}'=>$usergroups,
+				'{LFA_USERIP}'=>$_SERVER['REMOTE_ADDR']);
+		
 		foreach($tokens as $key => $value){
 			$content =  str_replace($key, $value, $content);
 		}
